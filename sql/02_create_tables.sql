@@ -153,6 +153,8 @@ CREATE TABLE Pedido (
 
     id_pedido INT IDENTITY(1,1),
 
+    id_cliente INT NOT NULL,
+
 	id_funcionario INT NOT NULL,
 
 	id_loja INT NOT NULL,
@@ -183,11 +185,11 @@ CREATE TABLE Endereco (
 
     logradouro VARCHAR(150) NOT NULL,
 
-	numero INT NOT NULL,
+	numero VARCHAR(10) NOT NULL,
 
 	cidade VARCHAR(50) NOT NULL,
 
-	cep INT NOT NULL,
+	cep CHAR(8) NOT NULL,
 
     CONSTRAINT PK_Endereco
         PRIMARY KEY (id_endereco)
@@ -249,7 +251,7 @@ CREATE TABLE Meta_Comercial (
 
 	id_funcionario INT NOT NULL,
 
-	mes VARCHAR(20) NOT NULL,
+	mes TINYINT NOT NULL,
 
 	ano INT NOT NULL,
 
