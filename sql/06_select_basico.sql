@@ -1,0 +1,60 @@
+/*LISTANDO CLIENTES POR ORDEM ALFABETICA*/
+
+SELECT * FROM Cliente 
+ORDER BY nome;
+
+/*LISTANDO NOME E EMAIL DE CLIENTES*/
+
+SELECT nome, email FROM Cliente 
+ORDER BY nome;
+
+/*LISTANDO NOME DE CLIENTES COM A*/
+
+SELECT * FROM Cliente 
+WHERE nome LIKE 'A%'
+ORDER BY nome;
+
+
+/*LISTANDO PRODUTOS ATIVOS*/
+
+SELECT * FROM Produto 
+WHERE status = 'ativo';
+
+/*LISTANDO PRODUTOS >= 5000 REAIS*/
+
+SELECT * FROM Produto 
+WHERE preco_venda >= 5000.00;
+
+/*LISTANDO TOP 10 PRODUTOS MAIS CAROS*/
+
+SELECT TOP 10 * FROM Produto 
+ORDER BY preco_venda DESC;
+
+/*LISTANDO PEDIDOS FEITOS ENTRE 2025 E 2026*/
+
+SELECT * FROM Pedido 
+WHERE data_pedido BETWEEN '2025-01-01' and '2026-12-01'
+ORDER BY data_pedido;
+
+/*LISTANDO PAGAMENTOS FEITOS COM CARTÃO DE CRÉDITO*/
+
+SELECT * FROM Pagamento 
+WHERE forma_pagamento = 'Cartão Crédito' 
+ORDER BY data_pagamento;
+
+/*LISTANDO LOJAS EM POR ESTADO*/
+
+SELECT * FROM Loja 
+WHERE estado = 'SP' 
+ORDER BY cidade;
+
+/*LISTANDO FUNCIONÁRIOS COM SALÁRIO >= 3000 REAIS*/
+
+SELECT * FROM Funcionario 
+WHERE salario >= 3000.00 
+ORDER BY nome;
+
+/*LISTANDO FUNCIONÁRIOS COM CARGO DE GERENTE OU VENDEDOR*/
+
+SELECT * FROM Funcionario 
+WHERE cargo IN ('Gerente de Loja', 'Vendedor');
