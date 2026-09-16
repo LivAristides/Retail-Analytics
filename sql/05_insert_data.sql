@@ -800,3 +800,65 @@ END;
 
 
 GO
+
+
+/*===========================================================
+ INSERT: Metas Comerciais
+===========================================================*/
+
+USE RetailAnalytics;
+GO
+
+DECLARE @Funcionario INT = 1;
+DECLARE @MesNumero TINYINT;
+DECLARE @MesNome VARCHAR(20);
+DECLARE @Meta DECIMAL(10,2);
+
+WHILE @Funcionario <= (SELECT MAX(id_funcionario) FROM Funcionario)
+BEGIN
+
+    SET @MesNumero = 1;
+
+    WHILE @MesNumero <= 12
+    BEGIN
+
+        SET @MesNome = CASE @MesNumero
+            WHEN 1 THEN 'Janeiro'
+            WHEN 2 THEN 'Fevereiro'
+            WHEN 3 THEN 'Março'
+            WHEN 4 THEN 'Abril'
+            WHEN 5 THEN 'Maio'
+            WHEN 6 THEN 'Junho'
+            WHEN 7 THEN 'Julho'
+            WHEN 8 THEN 'Agosto'
+            WHEN 9 THEN 'Setembro'
+            WHEN 10 THEN 'Outubro'
+            WHEN 11 THEN 'Novembro'
+            WHEN 12 THEN 'Dezembro'
+        END;
+
+        SET @Meta = (ABS(CHECKSUM(NEWID())) % 70001) + 30000;
+
+        INSERT INTO Meta_Comercial
+        (
+            id_funcionario,
+            mes,
+            ano,
+            valor_meta
+        )
+        VALUES
+        (
+            @Funcionario,
+            @MesNome,
+            2025,
+            @Meta
+        );
+
+        SET @MesNumero = @MesNumero + 1;
+
+    END
+
+    SET @Funcionario = @Funcionario + 1;
+
+END;
+GO
