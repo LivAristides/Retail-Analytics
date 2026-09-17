@@ -286,3 +286,18 @@ CREATE TABLE Item_Pedido (
 
 );
 GO
+
+
+/*===========================================================
+ TABELA: Log Pedido
+===========================================================*/
+
+CREATE TABLE Log_Pedido
+(
+    id_log INT IDENTITY(1,1) PRIMARY KEY,
+    id_pedido INT NOT NULL,
+    operacao VARCHAR(50) NOT NULL,
+    data_hora DATETIME NOT NULL DEFAULT GETDATE(),
+    usuario VARCHAR(100) NOT NULL DEFAULT SUSER_SNAME()
+);
+GO
